@@ -4,7 +4,8 @@ import axios from 'axios'
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-axios.get('https://api.github.com/users/pauline')
+
+axios.get('https://api.github.com/users/Pauline122112')
 .then(response => {
   console.log('response to property', response.data)
   
@@ -13,6 +14,8 @@ axios.get('https://api.github.com/users/pauline')
 .catch(err => {
   debugger
 })
+
+
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -58,6 +61,23 @@ const followersArray = [];
       </div>
     </div>
 */
+
+function cardMaker({ avatar_url, name, login, location, html_url, followers, following, bio }){
+  const card = document.createElement('div')
+  const avatar = document.createElement('img')
+  const cardInfo = document.createElement('div')
+  const headerName = document.createElement('h3')
+  const userName = document.createElement('p')
+  const paraLocation = document.createElement('p')
+  const profile = document.createElement('p')
+  const userFollower = document.createElement('p')
+  const myFollower = document.createElement('p')
+  const bioLink = document.createElement('p')
+
+
+  console.log(cardMaker)
+
+}
 
 /*
   List of LS Instructors Github username's:
