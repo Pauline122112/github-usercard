@@ -6,13 +6,17 @@ import axios from 'axios'
 */
 
 axios.get('https://api.github.com/users/Pauline122112')
+ 
 .then(response => {
+  //PROVIDES THE IMAGE
+  userInfo.appendChild(cardMaker(response.data))
   console.log('response to property', response.data)
   
 })
 
 .catch(err => {
   debugger
+  console.log(err)
 })
 
 
@@ -40,7 +44,13 @@ axios.get('https://api.github.com/users/Pauline122112')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+// const followersArray = [
+//     'tetondan,'
+//     'dustinmyers'
+//     'justsml',
+//     'luishrd',
+//     'bigknell'
+// ]
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -62,7 +72,8 @@ const followersArray = [];
     </div>
 */
 
-function cardMaker({ avatar_url, name, login, location, html_url, followers, following, bio }){
+const userInfo = document.querySelector('.cards')
+function cardMaker(object){
   const card = document.createElement('div')
   const avatar = document.createElement('img')
   const cardInfo = document.createElement('div')
@@ -70,14 +81,48 @@ function cardMaker({ avatar_url, name, login, location, html_url, followers, fol
   const userName = document.createElement('p')
   const paraLocation = document.createElement('p')
   const profile = document.createElement('p')
+  const userAddress = document.createElement('a')
   const userFollower = document.createElement('p')
-  const myFollower = document.createElement('p')
+  const myFollow = document.createElement('p')
   const bioLink = document.createElement('p')
 
 
-  console.log(cardMaker)
+  card.appendChild(avatar)
+  card.appendChild(cardInfo)
+  cardInfo.appendChild(headerName)
+  cardInfo.appendChild(userName)
+  cardInfo.appendChild(paraLocation)
+  cardInfo.appendChild(profile)
+  profile.appendChild(userAddress)
+  cardInfo.appendChild(userFollower)
+  cardInfo.appendChild(myFollow)
+  cardInfo.appendChild(bioLink)
+
+
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  headerName.classList.add('name')
+  userName.classList.add('username')
+
+  avatar.src = object.avatar_url //image
+  // avatar.alt = `Image`          //image
+  headerName.textContent = object.name //h3
+  userName.textContent = object.login //p
+  paraLocation.textContent = `Location: ${object.location}` //p
+  profile.textContent = `Profile: `
+  userAddress.href = object.html_url //a
+  userFollower.textContent = `Followers: ${object.followers}`
+  myFollow.textContent = `Following: ${object.following}`
+  bioLink.textContent = `Bio: ${object.bio}`
+
+
+
+
+return card
 
 }
+
+ console.log(cardMaker)
 
 /*
   List of LS Instructors Github username's:
